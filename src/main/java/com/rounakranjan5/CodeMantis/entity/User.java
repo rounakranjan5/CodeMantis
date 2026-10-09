@@ -2,6 +2,7 @@ package com.rounakranjan5.CodeMantis.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,13 +14,14 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String githubUserId;
+    private Integer githubUserId;
 
     private String username;
 
@@ -37,5 +39,13 @@ public class User {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    public User(Integer githubUserId, String username, String name, String email, String avatarUrl) {
+        this.githubUserId = githubUserId;
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.avatarUrl = avatarUrl;
+    }
 
 }
